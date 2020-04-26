@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import os
 import cv2
 import random
+import pickle
 # python indi.py
 
 DATADIR = "C:/Datasets/PetImages"
@@ -53,3 +54,24 @@ random.shuffle(training_data)
 
 for sample in training_data[:10]:
     print(sample[1])
+
+X = []
+y = []
+
+for features, label in training_data:
+    X.append(features)
+    y.append(label)
+
+# always want to have this data
+X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
+
+pickle_out = open("X.pickle", "wb")
+pickle.dump(X, pickle_out)
+pickle_out.close()
+
+pickle_out = open("y.pickle", "wb")
+pickle.dump(y, pickle_out)
+pickle_out.close()
+
+pickle_in = open("X.pickle", "rb")
+X = pickle.load(pickle_in)
