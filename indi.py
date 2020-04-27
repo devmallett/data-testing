@@ -22,7 +22,7 @@ for category in CATEGORIES:
 
 IMG_SIZE = 50
 
-new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
+new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE,1 ))
 plt.imshow(new_array, cmap = 'gray')
 # plt.show()
 
