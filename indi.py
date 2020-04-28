@@ -6,7 +6,7 @@ import random
 import pickle
 # python indi.py
 
-DATADIR = "C:/Datasets/PetImages"
+# DATADIR = "C:/Datasets/PetImages"
 CATEGORIES = ["Dog", "Cat"]
 
 for category in CATEGORIES:
