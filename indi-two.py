@@ -25,7 +25,7 @@ for some_image in CHUMPSKY:
 
 IMG_SIZE = 50
 new_devin = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
-plt.imshow(new_devin, cmap="gray")
+plt.imshow(new_devin, cmap="Blues")
 plt.show()
 
 print(new_devin)
