@@ -3,10 +3,12 @@ import matplotlib.pyplot as plt
 import os
 import cv2
 import random
+import pickle
 
 # python indi-two.py
 # Users/Owner/Documents/data-testing/data-testing
 
+# Loading data from C drive
 DATADIR = "C:/Datasets/PetImages"
 CHUMPSKY = [ "Dog", "Cat" ]
 
@@ -52,8 +54,27 @@ creating_training_data()
 random.shuffle(training_data)
 
 for sample in training_data[:10]:
-    print(sample[1])
+    print(sample[1]) #actual image array
     
+# Feeding into neural network
+X = [] #images
+y = [] #labels
+
+
+for features, label in training_data:
+    X.append(features)
+    y.append(label)
+
+X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1) #where '1' is the color
+
+print(len(X))
+
+picke_out = open("X.pickle", "wb")
+pickle.dump(X, picke_out)
+picke_out.close()
+
+pickle_in = open("X.pixkle", "rb")
+X = pickle.load(pickle_in)
 
 
 
