@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import cv2
+import random
 
 # python indi-two.py
 # Users/Owner/Documents/data-testing/data-testing
@@ -48,7 +49,10 @@ creating_training_data()
 
 # print(len(training_data))
 
+random.shuffle(training_data)
 
+for sample in training_data[:10]:
+    print(sample[1])
     
 
 
