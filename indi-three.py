@@ -22,7 +22,11 @@ IMAGES = ["Cat", "Dog"]
     path = os.path.join(DATADIR, some_iamge)
     for images in os.listdir(path):
         set_array = cv2.imread(os.path.join(path, images), cv2.IMREAD_GRAYSCALE)
-        
+        set_array = cv2.imread(os.path.join(DATADIR, images), cv2.IMREAD_GRAYSCALE)
+        set_array = cv2.imread(os.path.join(DATADIR, images), cv2.IMREAD_GRAYSCALE)
+        set_array = cv2.imread(os.path.join(DATADIR, images))
+        # variable = filereader.readfile(look at os.join(LOCATION_OF_IMAGES, each_filetype))
+
 
         
 
