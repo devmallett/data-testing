@@ -4,6 +4,12 @@ import os
 import cv2
 import random
 import pickle
+import tensorflow as tf
+import tensorflow.keras.models
+import Sequential
+import tensorflow.keras.layers
+import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+
 
 # python indi-two.py
 # Users/Owner/Documents/data-testing/data-testing
@@ -75,6 +81,35 @@ picke_out.close()
 
 pickle_in = open("X.pixkle", "rb")
 X = pickle.load(pickle_in)
+
+
+X = x/255.0
+
+model = Sequential()
+
+model.add(Conv2D(64), (3,3), input_shape = X.shape[1:])
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Conv2D(64), (3,3))
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Flatten())
+model.add(Dense(64))
+
+model.add(Dense(1))
+model.add(Activation("sigmoid"))
+
+model.compile(loss="binary_crossentropy",
+optimizer="adam",
+metrics=["accuracy"])
+
+model.fit(X, y, batch_size=32, validation_split=0.1)
+
+
+
+
 
 
 
