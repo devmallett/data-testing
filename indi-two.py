@@ -5,10 +5,9 @@ import cv2
 import random
 import pickle
 import tensorflow as tf
-import tensorflow.keras.models
-import Sequential
-import tensorflow.keras.layers
-import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+from tensorflow import keras
+from  keras.models import Sequential
+from  tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 
 
 # python indi-two.py
@@ -17,7 +16,7 @@ import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 # Loading data from C drive
 DATADIR = "C:/Datasets/PetImages"
 CHUMPSKY = [ "Dog", "Cat" ]
-
+# set
 
 # Iterate through all examples of Cat and Dog Images 
 for some_image in CHUMPSKY:
@@ -72,40 +71,44 @@ for features, label in training_data:
     y.append(label)
 
 X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1) #where '1' is the color
+y = np.array(y)
 
 print(len(X))
 
-picke_out = open("X.pickle", "wb")
-pickle.dump(X, picke_out)
-picke_out.close()
+pickle_out = open("X.pickle", "wb")
+pickle.dump(X, pickle_out)
+pickle_out.close()
 
-pickle_in = open("X.pixkle", "rb")
+pickle_in = open("X.pickle", "rb")
 X = pickle.load(pickle_in)
 
 
-X = x/255.0
+X = X/255.0
 
-model = Sequential()
+model = keras.Sequential([
+    keras.layers.Conv2D((24946), (3,3), input_shape=X.shape[1:]),
+    keras.layers.Dense(24946, activation="relu"),
+    keras.layers.MaxPooling2D(pool_size=(2,2)),
+    keras.layers.Dense(1, activation="sigmoid")
+])
 
-model.add(Conv2D(64), (3,3), input_shape = X.shape[1:])
-model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
+# model.add(Conv2D(64), (3,3), input_shape = X.shape[1:])
+# model.add(Activation("relu"))
+# model.add(MaxPooling2D(pool_size=(2,2)))
 
-model.add(Conv2D(64), (3,3))
-model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
+# model.add(Conv2D(64), (3,3))
+# model.add(Activation("relu"))
+# model.add(MaxPooling2D(pool_size=(2,2)))
 
-model.add(Flatten())
-model.add(Dense(64))
+# model.add(Flatten())
+# model.add(Dense(64))
 
-model.add(Dense(1))
-model.add(Activation("sigmoid"))
+# model.add(Dense(1))
+# model.add(Activation("sigmoid"))
 
-model.compile(loss="binary_crossentropy",
-optimizer="adam",
-metrics=["accuracy"])
+model.compile(loss="mean_squared_error", optimizer="sgd")
 
-model.fit(X, y, batch_size=32, validation_split=0.1)
+model.fit(X, y, batch_size=32, epochs=40, validation_split=0.1)
 
 
 
