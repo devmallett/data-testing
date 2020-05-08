@@ -74,23 +74,24 @@ X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1) #where '1' is the color
 y = np.array(y)
 
 print(len(X))
+print(len(y))
 
-pickle_out = open("X.pickle", "wb")
-pickle.dump(X, pickle_out)
-pickle_out.close()
+# pickle_out = open("X.pickle", "wb")
+# pickle.dump(X, pickle_out)
+# pickle_out.close()
 
-pickle_in = open("X.pickle", "rb")
-X = pickle.load(pickle_in)
+# pickle_in = open("X.pickle", "rb")
+# X = pickle.load(pickle_in)
 
 
-X = X/255.0
+# X = X/255.0
 
-model = keras.Sequential([
-    keras.layers.Conv2D((24946), (3,3), input_shape=X.shape[1:]),
-    keras.layers.Dense(24946, activation="relu"),
-    keras.layers.MaxPooling2D(pool_size=(2,2)),
-    keras.layers.Dense(1, activation="sigmoid")
-])
+# model = keras.Sequential([
+#     keras.layers.Conv2D((24946), (3,3), input_shape=X.shape[1:]),
+#     keras.layers.Dense(24946, activation="relu"),
+#     keras.layers.MaxPooling2D(pool_size=(2,2)),
+#     keras.layers.Dense(1, activation="sigmoid")
+# ])
 
 # model.add(Conv2D(64), (3,3), input_shape = X.shape[1:])
 # model.add(Activation("relu"))
@@ -106,9 +107,9 @@ model = keras.Sequential([
 # model.add(Dense(1))
 # model.add(Activation("sigmoid"))
 
-model.compile(loss="mean_squared_error", optimizer="sgd")
+# model.compile(loss="mean_squared_error", optimizer="sgd")
 
-model.fit(X, y, batch_size=32, epochs=40, validation_split=0.1)
+# model.fit(X, y, batch_size=32, epochs=40, validation_split=0.1)
 
 
 
