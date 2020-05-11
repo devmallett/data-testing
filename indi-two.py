@@ -12,6 +12,7 @@ from  tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D
 
 # python indi-two.py
 # Users/Owner/Documents/data-testing/data-testing
+# virtual environment: data-testing-JaEhqsaC
 
 # Loading data from C drive
 DATADIR = "C:/Datasets/PetImages"
@@ -76,12 +77,18 @@ y = np.array(y)
 print(len(X))
 print(len(y))
 
-# pickle_out = open("X.pickle", "wb")
-# pickle.dump(X, pickle_out)
-# pickle_out.close()
+pickle_out = open("X.pickle", "wb")
+pickle.dump(X, pickle_out)
+pickle_out.close()
 
-# pickle_in = open("X.pickle", "rb")
-# X = pickle.load(pickle_in)
+pickle_in = open("X.pickle", "rb")
+X = pickle.load(pickle_in)
+
+pickle_out = open("y.pickle", "wb")
+pickle.dump(y, pickle_out)
+pickle_out.close()
+
+# pickle_in = 
 
 
 # X = X/255.0
