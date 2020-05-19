@@ -8,6 +8,12 @@ from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling
 import pickle
 import keras.datasets
 from keras import backend as K
+import TensorBoard
+from time import time
+
+NAME = "Cats-vs-dog-cnn-64x-{}".format(int(time()))
+
+tensorboard = TensorBoard(log_dir='/logs/{}'.format(NAME))
 
 # python ten-cnn.py
 # https://www.youtube.com/watch?v=WvoLTXIjBYU
@@ -78,7 +84,7 @@ model = keras.Sequential([
 
 model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
-model.fit(X, y, batch_size=32, epochs = 3, validation_split=0.1)
+model.fit(X, y, batch_size=32, epochs = 3, validation_split=0.1, callbacks=[tensorboard])
 
 # python ten-cnn.py
 
