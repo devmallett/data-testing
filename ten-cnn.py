@@ -1,27 +1,28 @@
 import tensorflow as tf
 from tensorflow import keras
 # from tensorflow import ConfigProto, Session
-from tensorflow.compat.v1 import ConfigProto
-from tensorflow.compat.v1 import InteractiveSession
+# from tensorflow.compat.v1 import ConfigProto
+# from tensorflow.compat.v1 import InteractiveSession
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 import pickle
 import keras.datasets
 from keras import backend as K
-import TensorBoard
-from time import time
+import datetime
 
-NAME = "Cats-vs-dog-cnn-64x-{}".format(int(time()))
+# NAME = "Cats-vs-dog-cnn-64x-{}".format(int(time()))
 
-tensorboard = TensorBoard(log_dir='/logs/{}'.format(NAME))
+log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 # python ten-cnn.py
-# https://www.youtube.com/watch?v=WvoLTXIjBYU
+# https://www.youtube.com/watch?v=WvoLTXIjBYU   p3
+# https://www.youtube.com/watch?v=BqgTU7_cBnk p4
 
 #Running Many GPUs at the same time
-config = ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.333
-session = InteractiveSession(config=config)
+# config = ConfigProto()
+# config.gpu_options.per_process_gpu_memory_fraction = 0.333
+# session = InteractiveSession(config=config)
 # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
 # sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 
@@ -84,7 +85,7 @@ model = keras.Sequential([
 
 model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
-model.fit(X, y, batch_size=32, epochs = 3, validation_split=0.1, callbacks=[tensorboard])
+model.fit(X, y, batch_size=32, epochs = 3, validation_split=0.1, callbacks=[tensorboard_callback])
 
 # python ten-cnn.py
 
