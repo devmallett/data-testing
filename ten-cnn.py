@@ -1,8 +1,10 @@
 import tensorflow as tf
 from tensorflow import keras
-# from tensorflow import ConfigProto, Session
-# from tensorflow.compat.v1 import ConfigProto
-# from tensorflow.compat.v1 import InteractiveSession
+from tf.ConfigProto import ConfigProto
+# python.keras.callbacks import ConfigProto
+# import ConfigProto
+from tensorflow.python.keras.callbacks import InteractiveSession
+# import InteractiveSession
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 import pickle
@@ -20,9 +22,9 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram
 # https://www.youtube.com/watch?v=BqgTU7_cBnk p4
 
 #Running Many GPUs at the same time
-# config = ConfigProto()
-# config.gpu_options.per_process_gpu_memory_fraction = 0.333
-# session = InteractiveSession(config=config)
+config = ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.333
+session = InteractiveSession(config=config)
 # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
 # sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 
