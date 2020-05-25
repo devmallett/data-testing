@@ -3,7 +3,7 @@ from tensorflow import keras
 from tf.ConfigProto import ConfigProto
 # python.keras.callbacks import ConfigProto
 # import ConfigProto
-from tensorflow.python.keras.callbacks import InteractiveSession
+# from tensorflow.python.keras.callbacks import InteractiveSession
 # import InteractiveSession
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
